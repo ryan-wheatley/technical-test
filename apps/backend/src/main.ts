@@ -6,8 +6,7 @@ async function bootstrap() {
 
   app.enableCors({
     origin: [
-      'http://localhost:3001',
-      'https://studious-chainsaw-web.vercel.app',
+      process.env.CORS_ORIGIN ?? 'http://localhost:3001',
     ],
     methods: ['GET'],
     allowedHeaders: ['Content-Type', 'Authorization'],
@@ -16,3 +15,4 @@ async function bootstrap() {
   await app.listen(3000);
 }
 bootstrap();
+
