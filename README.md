@@ -87,3 +87,26 @@ You can see the application live at the following links:
 ### Backend:
 - [API URL](https://backend-ffiu.onrender.com/comms/your-next-delivery/)
 - [Example delivery](https://backend-ffiu.onrender.com/comms/your-next-delivery/ff535484-6880-4653-b06e-89983ecf4ed5)
+
+## Ideas for improvements
+
+### Error handling & monitoring
+- Add more specific error handling to the frontend. I have approached this with the assumption "The user should only be seeing this page if they have an upcoming delivery".
+    - e.g. If this page is expected to viewed by the user when they have no active subscriptions, display a message to that effect.
+- Add Sentry for error logging. 
+
+### CI/CD
+- Run the tests before each commit using Github actions.
+- Run ESLint and Prettier on each commit using Github actions.
+
+### Observability
+- Add Vercels observability tools to monitor the frontend. e.g. 
+ ```
+track('More details viewed', { deliveryId: 'ff535484-6880-4653-b06e-89983ecf4ed5' });
+```
+
+### Live updates
+- To avoid incorrect data being displayed, update the page when the user's delivery status changes. This could be done using Websockets, or a combination of revalidation on page focus/tab switching and polling the API every 5 minutes.
+
+### Feature flagging
+- Use LaunchDarkly to A/B test different pictures of cats on the page. This would allow the team to see who's cat is the most popular.
